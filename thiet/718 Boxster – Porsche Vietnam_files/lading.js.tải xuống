@@ -1,0 +1,80 @@
+(function () {
+    var $= jQuery.noConflict();
+    $(document).ready(function () {
+        window.addEventListener('resize', bzDebounce(function () {}, 250));
+        fancyboxCustomOver();
+        // sclickPartner();
+    });
+
+    function bzDebounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this,
+                args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+    function fancyboxCustomOver() {
+        console.log('333');
+
+        $('[data-fancybox').fancybox({
+            // Options will go here
+            buttons: [
+              //"share",
+            //   "slideShow",
+              //"fullScreen",
+              "download",
+              "thumbs",
+              "close"
+            ],
+            animationEffect: "zoom-in-out",
+            transitionEffect: "zoom-in-out",
+            transitionEffect: "tube",
+            
+        });
+        console.log('22');
+    }
+
+    
+   
+    function sclickPartner() {
+        if ($('.wrap-slick-gallery').length) {
+            $('.wrap-slick-gallery').slick({
+                slidesToShow: 2,
+                autoplaySpeed: 1000,
+                cssEase: 'ease-out',
+                dots: false,
+                infinite: false,
+                speed: 300,
+                autoplay: false,
+                slidesToScroll: 2,
+                dots: false,
+            //     responsive: [{
+            //             breakpoint: 769,
+            //             settings: {
+            //                 slidesToShow: 2,
+            //                 slidesToScroll: 1,
+            //             }
+            //         },
+            //         {
+            //             breakpoint: 572,
+            //             settings: {
+            //                 slidesToShow: 1,
+            //                 slidesToScroll: 1,
+            //             }
+            //         }
+            //     ]
+            });
+        }
+
+    }
+
+})();
